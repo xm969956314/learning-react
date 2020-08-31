@@ -1,0 +1,29 @@
+Redux 数据管理：
+1. 需要安装依赖 Redux；
+2. 新建目录 store并新增 index.js 和 reducer.js 两个文件；
+3. index 文件引入 redux 和 reducer两个依赖，并创建 store仓库：
+    export default new createStore(reducer)；
+
+4. reducer 中建立 state默认值并返回；
+5. 注意：因为 redux不允许我们改变 state中的值，所以 每次返回的是一个新的对象；
+6. store.dispatch({type: 'xxx', value:''}) 提交的必须是一个对象，
+redux-devtools 通用配置方式：const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
+
+Redux 中间件的使用：
+redux-thunk：
+(1) 配置方式：const enhancer = composeEnhancers(applyMiddleware(thunk));
+(2) 可以使 store.dispatch 返回一个异步函数:
+    store.dispatch(dispatch => {xxxx.then(res => dispatch({type: 'xxx', value:res}))})
+
+redux-saga：
+(1) 配置方式：const sagaWare = createSagaMiddleware();
+            const enhancer = composeEnhancers(applyMiddleware(sagaWare));
+            sagaWare.run(sagas);
+(2) 需要使用 redux-saga/effects 下 takeEvery/takeLatest 进行 store.dispatch({type: 'xxx'})捕获：
+    yield takeEvery('xxx', handleFun); / yield takeLatest('xxx', handleFun);
+    takeEvery 与 takeLatest：takeLatest只处理最新，相当于函数节流；
+(3) sagaConfig 函数必须是 generator 函数，里面的处理函数也必须是 generator 函数；
+(4) 需要注意的是：因为 sagaConfig捕获函数会对 xxx的进行处理，那么在 reducer就不能是 xxx了，否则会出现死循环；
+
+Redux 数据处理的第三方插件 react-redux：

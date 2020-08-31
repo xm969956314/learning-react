@@ -1,0 +1,8 @@
+.redux-test{
+    margin: 10px 10%;
+}
+.redux-test>div{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 10px;
+}

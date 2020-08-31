@@ -1,0 +1,17 @@
+React 的生命周期：
+constructor 不能算作 React 的生命周期，是 ES6 语法自带的；
+1. initialization
+数据初始化的时候 默认加载数据：setup props / state
+
+2. Mounting 数据挂载：
+ComponentWillMounting：
+render：
+ComponentDidMounting：
+
+3. Updating 数据更新：
+props --> componentWillReceiveProps --> shouldComponentUpdate --> componentWillUpdate --> render --> componentDidUpdate
+
+state --> shouldComponentUpdate --> componentWillUpdate --> render --> componentDidUpdate
+
+4. Unmounting 取消挂载：
+componentWillUnmounting

@@ -1,0 +1,60 @@
+/* 自己手写的 */
+.show{
+    /*opacity: 1;*/
+    /*transition: all 1s ease-in;*/
+    animation: show-item 0.5s ease-in forwards;
+}
+.hidden{
+    /*opacity: 0;*/
+    /*transition: all 1s ease-in;*/
+    animation: hidden-item 0.5s ease-in forwards;
+}
+@keyframes show-item {
+    0%{
+        opacity: 0;
+        color: red;
+    }
+    50%{
+        opacity: 0.5;
+        color: orange;
+    }
+    100%{
+        opacity: 1;
+        color: #000;
+    }
+}
+@keyframes hidden-item {
+    0%{
+        opacity: 1;
+        color: red;
+    }
+    50%{
+        opacity: 0.5;
+        color: green;
+    }
+    100%{
+        opacity: 0;
+        color: blue;
+    }
+}
+/* CSSTransition 封装的 */
+.fade-enter, .fade-appear {
+    opacity: 0;
+    transform: scale(0.9);
+}
+.fade-enter-active, .fade-appear-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 1s;
+}
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 1s;
+}
+
+
+

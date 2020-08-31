@@ -1,0 +1,20 @@
+简化真实虚拟 DOM的生成规则：
+1. state 数据；
+2. JSX 模板；
+
+3. 数据 + 模板 结合生成虚拟 DOM（虚拟 DOM就是一个JS对象，用它来描述真实的 DOM）:
+['div', {id: 'abc'}, ['span', {}, 'hello world']]；
+
+4. 根据生成的虚拟 DOM生成真实的 DOM 来显示:
+<div id="abc"><span>hello world</span></div> ;
+
+5. state 发生变化；
+
+6. 生成 新的虚拟的DOM：
+['div', {id: 'abc'}, ['span', {}, 'bye bye']]；
+7. 比较原始虚拟 DOM 和新的 DOM 的区别，找到区别是 span中的内容（极大的提升性能）；
+8. 直接操作 DOM，改变 span中的内容；
+
+优点：
+1. 极大的提升了性能；
+2. 可以做到多端通用，因为是生成的虚拟 DOM（React Native）；
